@@ -1,5 +1,5 @@
-# setup-wordpress
-Setup do Wordpress usando Docker
+# Setup do Wordpress usando Docker
+
 
 ### 🎲 Rodando o projeto
 
