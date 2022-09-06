@@ -34,4 +34,4 @@ sudo chmod 777 "diretório_raiz"
 
 Utilize o comando `pwd` para identificar o diretório corretamente.
 
-Acesse `localhost`.
+Para testar o funcionamento do Wordpress, acesse o seu `localhost`
