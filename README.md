@@ -29,7 +29,7 @@ Ele irá listar os containers que estão ativos no momento.
 
 Após a execução dos comandos acima, uma pasta chamada `wordpress` terá sido criada. Para melhor funcionamento, rode o comando:
 ```
-sudo chmod 777 "diretório_da_pasta_wordpress"
+sudo chmod 777 "diretório_raiz"
 ```
 
 Utilize o comando `pwd` para identificar o diretório corretamente.
