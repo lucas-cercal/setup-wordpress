@@ -1,29 +1,38 @@
 version: '2'
 
 services:
-  wordpress:
-    image: wordpress:latest
-    links:
-      - database:mariadb
+  db:
+    container_name: "mariadb"
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mariadb:10.6.4-focal
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
     environment:
-      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
-      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
-      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
-      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
-      - MYSQL_PORT_3306_TCP=${MYSQL_PORT_3306_TCP}
-    restart: unless-stopped
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    expose:
+      - 3306
+      - 33060
+  wordpress:
+    container_name: "wordpress"
+    image: wordpress:latest
     ports:
       - 80:80
-    working_dir: /var/www/html
+    restart: always
+    environment:
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+      - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
     volumes:
-     - ./wordpress/:/var/www/html/
-  database:
-   image: mariadb:latest
-   environment:
-     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-     - MYSQL_DATABASE=${MYSQL_DATABASE}
-     - MYSQL_USER=${MYSQL_USER}
-     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-   restart: unless-stopped
-   ports:
-     - 3306:3306
+      - ./:/var/www/html
+    links:
+      - db    
+volumes:
+  db_data:
