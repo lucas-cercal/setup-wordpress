@@ -33,3 +33,5 @@ sudo chmod 777 "diretório_raiz"
 ```
 
 Utilize o comando `pwd` para identificar o diretório corretamente.
+
+Acesse `localhost`.
