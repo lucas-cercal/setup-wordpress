@@ -3,9 +3,8 @@
 
 ### 🎲 Rodando o projeto
 
-Crie um arquivo `.env` a partir do `.env-example` e configure as variáveis de ambiente.
 
-Feito isso, certifique-se que o serviço do docker está ativo e funcionando corretamente
+Certifique-se que o serviço do docker está ativo e funcionando corretamente
 ```
 sudo service docker status
 ```
