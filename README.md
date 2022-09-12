@@ -14,9 +14,9 @@ Caso o serviço não esteja rodando, use o comando:
 sudo service docker start
 ```
 
-Em seguida, use o comando para rodar em segundo plano:
+Em seguida, use o comando para rodar os containers em segundo plano:
 ```
-docker-compose up -d
+sh scripts/setupProjeto.sh
 ```
 
 Para verificar se o comando acima funcionou corretamente, use:
@@ -24,13 +24,9 @@ Para verificar se o comando acima funcionou corretamente, use:
 docker-compose ps
 ```
 
-Ele irá listar os containers que estão ativos no momento.
-
-Após a execução dos comandos acima, uma pasta chamada `wordpress` terá sido criada. Para melhor funcionamento, rode o comando:
+Caso possua containers duplicados, rode o comando
 ```
-sudo chmod 777 "diretório_raiz"
+sh scripts/removeALreadyContainers.sh
 ```
 
-Utilize o comando `pwd` para identificar o diretório corretamente.
-
-Para testar o funcionamento do Wordpress, acesse o seu `localhost`
+Acesse `localhost` para testar o funcionamento.
